@@ -15,7 +15,7 @@ public class EixoModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "eixo")
+    @OneToMany(mappedBy = "eixo", fetch = FetchType.EAGER)
     private List<RequisitoModel> requisitos;
 
     @Column(nullable = false)

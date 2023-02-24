@@ -4,6 +4,7 @@ import br.jus.tjpi.opala.aura.dtos.EixoDto;
 import br.jus.tjpi.opala.aura.models.EixoModel;
 import br.jus.tjpi.opala.aura.services.EixoService;
 
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
@@ -26,6 +27,7 @@ public class EixoController {
     }
 
     // Inclusão
+    @Transactional
     @PostMapping
     public ResponseEntity<Object> incluir(@RequestBody @Valid EixoDto eixoDto){
         EixoModel eixoModel = new EixoModel();
@@ -60,13 +62,38 @@ public class EixoController {
     }
 
     // Exclusão
+    @Transactional
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> excluir(@PathVariable (value = "id") Long id){
         Optional<EixoModel> eixoModelOptional = eixoService.listarUm(id);
+
         if (!eixoModelOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Eixo não encontrado");
         }
+
         eixoService.excluir(eixoModelOptional.get());
         return ResponseEntity.status(HttpStatus.OK).body(eixoModelOptional.get());
     }
+
+    // Atualização
+    @Transactional
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> atualizar(@PathVariable (value = "id") Long id, @RequestBody @Valid EixoDto eixoDto){
+        Optional<EixoModel> eixoModelOptimal = eixoService.listarUm(id);
+
+        if (!eixoModelOptimal.isPresent())  {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Eixo não encontrado");
+        }
+
+        var eixoModel = eixoModelOptimal.get();
+        eixoModel.setAno(eixoDto.getAno());
+        eixoModel.setDescricao(eixoDto.getDescricao());
+        eixoModel.setMaxPontos(eixoDto.getMaxPontos());
+        eixoModel.setNumItensPontuacao(eixoDto.getNumItensPontuacao());
+        eixoModel.setNumRequisitos(eixoDto.getNumRequisitos());
+
+        return ResponseEntity.status(HttpStatus.OK).body(eixoService.salvar(eixoModel));
+
+    }
+
 }

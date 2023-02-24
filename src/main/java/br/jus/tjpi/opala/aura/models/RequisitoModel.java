@@ -19,7 +19,7 @@ public class RequisitoModel  implements Serializable {
     @JoinColumn(name = "eixo_id")
     private EixoModel eixo;
 
-    @OneToMany(mappedBy = "requisito")
+    @OneToMany(mappedBy = "requisito", fetch = FetchType.EAGER)
     private List<PontuacaoModel> itensPontuacao;
 
     @Column(nullable = false)

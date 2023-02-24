@@ -9,7 +9,6 @@ import java.util.List;
 
 public class RequisitoDto {
 
-    @NotBlank
     private EixoModel eixo;
     private List<PontuacaoModel> itensPontuacao;
     @NotBlank

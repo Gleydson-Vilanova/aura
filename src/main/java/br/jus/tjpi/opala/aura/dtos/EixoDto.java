@@ -2,10 +2,11 @@ package br.jus.tjpi.opala.aura.dtos;
 
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class EixoDto {
 
-    @NotBlank
+    @NotNull
     private Integer ano;
 
     @NotBlank
