@@ -8,4 +8,5 @@ import java.util.List;
 @Repository
 public interface EixoRepository extends JpaRepository<EixoModel, Long> {
     List<EixoModel> findByAno(Integer year);
+    List<EixoModel> findByMaxPontos(Integer pontos);
 }

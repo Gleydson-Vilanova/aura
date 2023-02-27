@@ -51,6 +51,16 @@ public class EixoController {
         return ResponseEntity.status(HttpStatus.OK).body(eixoModelOptional.get());
     }
 
+    // Listagem por pontos
+    @GetMapping("/pontos/{pontos}")
+    public ResponseEntity<Object> listarUm(@PathVariable (value = "pontos") Integer pontos){
+        List<EixoModel> eixoModelOptional = eixoService.listarPorMaxPontos(pontos);
+        if (eixoModelOptional.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Pontuação não encontrada");
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(eixoService.listarPorMaxPontos(pontos));
+    }
+
     // Listagem por ano
     @GetMapping("/ano/{ano}")
     public ResponseEntity<Object> listarPorAno(@PathVariable (value = "ano") Integer ano){

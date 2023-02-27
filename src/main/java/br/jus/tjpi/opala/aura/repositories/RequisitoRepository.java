@@ -11,4 +11,5 @@ import java.util.List;
 @Repository
 public interface RequisitoRepository extends JpaRepository<RequisitoModel, Long> {
 
+    List<RequisitoModel> findByEixo(Long id);
 }

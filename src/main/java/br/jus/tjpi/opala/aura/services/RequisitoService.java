@@ -33,6 +33,10 @@ public class RequisitoService {
     public Optional<RequisitoModel> listarUm(Long id) {
         return requisitoRepository.findById(id);
     }
+
+    public List<RequisitoModel> listarPorEixo(Long id) {
+        return requisitoRepository.findByEixo(id);
+    }
 /*
     // Listagem por Eixo
     public List<RequisitoModel> listarPorEixo(EixoModel eixoModel){

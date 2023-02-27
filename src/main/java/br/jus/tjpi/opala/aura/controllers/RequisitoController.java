@@ -50,17 +50,17 @@ public class RequisitoController {
         return ResponseEntity.status(HttpStatus.OK).body(requisitoModelOptional.get());
 
     }
-/*
+
     // Listagem por eixo
-    @GetMapping("/ano/{ano}")
-    public ResponseEntity<Object> listarPorAno(@PathVariable (value = "ano") Integer ano){
-        List<RequisitoModel> requisitoModelList = requisitoService.listarPorAno(ano);
+    @GetMapping("/eixo/{id}")
+    public ResponseEntity<Object> listarPorAno(@PathVariable (value = "id") Long id){
+        List<RequisitoModel> requisitoModelList = requisitoService.listarPorEixo(id);
         if (requisitoModelList.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Registros não encontrados");
         }
         return ResponseEntity.status(HttpStatus.OK).body(requisitoModelList);
     }
-
+/*
     // Exclusão
     @Transactional
     @DeleteMapping("/{id}")

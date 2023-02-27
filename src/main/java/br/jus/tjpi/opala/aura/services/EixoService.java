@@ -38,6 +38,11 @@ public class EixoService {
         return eixoRepository.findByAno(ano);
     }
 
+    // Listagem por Max Pontos
+    public List<EixoModel> listarPorMaxPontos(Integer pontos){
+        return eixoRepository.findByMaxPontos(pontos);
+    }
+
     // Exclusão
     @Transactional
     public void excluir(EixoModel eixoModel){
