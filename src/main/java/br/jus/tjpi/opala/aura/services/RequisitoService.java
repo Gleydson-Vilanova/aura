@@ -37,6 +37,11 @@ public class RequisitoService {
     public List<RequisitoModel> listarPorEixo(Long id) {
         return requisitoRepository.findByEixo(id);
     }
+
+    @Transactional
+    public void excluir(RequisitoModel requisitoModel) {
+        requisitoRepository.delete(requisitoModel);
+    }
 /*
     // Listagem por Eixo
     public List<RequisitoModel> listarPorEixo(EixoModel eixoModel){

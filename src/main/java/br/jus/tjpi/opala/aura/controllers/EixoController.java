@@ -38,7 +38,7 @@ public class EixoController {
     // Listagem total
     @GetMapping
     public ResponseEntity<List<EixoModel>> listarTodos(){
-        return ResponseEntity.status(HttpStatus.CREATED).body(eixoService.listarTodos());
+        return ResponseEntity.status(HttpStatus.OK).body(eixoService.listarTodos());
     }
 
     // Listagem única

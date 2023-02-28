@@ -60,7 +60,7 @@ public class RequisitoController {
         }
         return ResponseEntity.status(HttpStatus.OK).body(requisitoModelList);
     }
-/*
+
     // Exclusão
     @Transactional
     @DeleteMapping("/{id}")
@@ -86,14 +86,13 @@ public class RequisitoController {
         }
 
         var requisitoModel = requisitoModelOptimal.get();
-        requisitoModel.setAno(requisitoDto.getAno());
-        requisitoModel.setDescricao(requisitoDto.getDescricao());
+        requisitoModel.setArtigo(requisitoDto.getArtigo());
+        requisitoModel.setDescRequisito(requisitoDto.getDescRequisito());
         requisitoModel.setMaxPontos(requisitoDto.getMaxPontos());
-        requisitoModel.setNumItensPontuacao(requisitoDto.getNumItensPontuacao());
-        requisitoModel.setNumRequisitos(requisitoDto.getNumRequisitos());
+        requisitoModel.setEixo(requisitoDto.getEixo());
 
         return ResponseEntity.status(HttpStatus.OK).body(requisitoService.salvar(requisitoModel));
 
     }
-*/
+
 }
