@@ -25,6 +25,7 @@ public class PontuacaoController {
         this.pontuacaoService = pontuacaoService;
     }
 
+
     // Inclusão
     @Transactional
     @PostMapping
@@ -49,16 +50,6 @@ public class PontuacaoController {
         }
         return ResponseEntity.status(HttpStatus.OK).body(pontuacaoModelOptional.get());
 
-    }
-
-    // Listagem por eixo
-    @GetMapping("/eixo/{id}")
-    public ResponseEntity<Object> listarPorAno(@PathVariable (value = "id") Long id){
-        List<PontuacaoModel> pontuacaoModelList = pontuacaoService.listarPorEixo(id);
-        if (pontuacaoModelList.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Registros não encontrados");
-        }
-        return ResponseEntity.status(HttpStatus.OK).body(pontuacaoModelList);
     }
 
     // Exclusão
@@ -86,10 +77,12 @@ public class PontuacaoController {
         }
 
         var pontuacaoModel = pontuacaoModelOptimal.get();
-        pontuacaoModel.setArtigo(pontuacaoDto.getArtigo());
-        pontuacaoModel.setDescPontuacao(pontuacaoDto.getDescPontuacao());
+        pontuacaoModel.setDescricaoItem(pontuacaoDto.getDescricaoItem());
         pontuacaoModel.setMaxPontos(pontuacaoDto.getMaxPontos());
-        pontuacaoModel.setEixo(pontuacaoDto.getEixo());
+        pontuacaoModel.setTjpiPontos(pontuacaoDto.getTjpiPontos());
+        pontuacaoModel.setFormaComprovacao(pontuacaoDto.getFormaComprovacao());
+        pontuacaoModel.setInicioPerRef(pontuacaoDto.getInicioPerRef());
+        pontuacaoModel.setFinalPerRef(pontuacaoDto.getFinalPerRef());
 
         return ResponseEntity.status(HttpStatus.OK).body(pontuacaoService.salvar(pontuacaoModel));
 
